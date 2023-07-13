@@ -33,6 +33,11 @@ export const createUser = async(req,res,next)=>{
         await user.save()
         res.status(201).json(user)
     } catch (error) {
+        if(error.code == 11000){
+            error.message = "Email already exist, try a differnt one"
+            next(error)
+            return
+        }
         next(error)
     }
 }

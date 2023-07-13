@@ -43,14 +43,14 @@ app.use('/api/users', userRouter)
 
 //Handling errors
 app.use((err,req,res,next)=>{
-    const error = new Error()
-    error.status = err.status || 400
-    error.message = err.message || "Something went wrong"
+    // const error = new Error()
+    err.status = err.status || 400
+    err.message = err.message || "Something went wrong"
 
-    res.status(error.status).json({
+    res.status(err.status).json({
         success : false,
-        message: error.message,
-        stack: error.stack
+        message: err.message,
+        stack: err.stack
     })
 })
 
