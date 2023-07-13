@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv'
 import mongoose from "mongoose";
 import userRouter from "./Routes/userRoute.js";
+import cors from 'cors'
 
 //Configuring ENV files
 dotenv.config()
@@ -9,7 +10,7 @@ dotenv.config()
 //Initializing express server
 const app = express()
 app.use(express.json())
-
+app.use(cors())
 //ENV Variables
 const PORT = process.env.PORT
 const MONGO_URL = process.env.MONGO_URL
