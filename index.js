@@ -43,7 +43,6 @@ app.use('/api/users', userRouter)
 
 //Handling errors
 app.use((err,req,res,next)=>{
-    // const error = new Error()
     err.status = err.status || 400
     err.message = err.message || "Something went wrong"
 

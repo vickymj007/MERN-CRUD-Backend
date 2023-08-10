@@ -4,13 +4,17 @@ import mongoose from "mongoose";
 const userSchema = mongoose.Schema({
     name:{
         type:String,
-        required:[true,"Username is required"]
+        required:[true,"Contact name is required"]
     },
-    email:{
+    contact_number:{
+        type:Number,
+        required:[true,"Contact number is required"],
+    },
+    relation:{
         type:String,
-        required:[true,"Email is required"],
-        unique:[true,"Email already exist"]
-    }
+        required:true
+    },
+    avatar_id:Number
 })
 
 userSchema.set('toJSON',{
