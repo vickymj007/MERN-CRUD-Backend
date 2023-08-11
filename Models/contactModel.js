@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const userSchema = mongoose.Schema({
+const contactSchema = mongoose.Schema({
     name:{
         type:String,
         required:[true,"Contact name is required"]
@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
     contact_number:{
         type:Number,
         required:[true,"Contact number is required"],
+        unique:true
     },
     relation:{
         type:String,
@@ -17,10 +18,10 @@ const userSchema = mongoose.Schema({
     avatar_id:Number
 })
 
-userSchema.set('toJSON',{
+contactSchema.set('toJSON',{
     transform:(doc,returnedObject)=>{
         delete returnedObject.__v
     }
 })
 
-export default mongoose.model("User",userSchema,"user-database")
+export default mongoose.model("Contact",contactSchema)

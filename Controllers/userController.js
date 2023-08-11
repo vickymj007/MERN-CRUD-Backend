@@ -1,10 +1,10 @@
-import User from "../Models/userModel.js"
+import Contact from "../Models/contactModel.js"
 
 
 //Get users
 export const getAllUsers = async(req,res,next)=>{
     try {
-        const userData = await User.find()
+        const userData = await Contact.find()
         res.status(200).json(userData)
     } catch (error) {
         next(error)
@@ -13,7 +13,7 @@ export const getAllUsers = async(req,res,next)=>{
 
 export const getUserByID = async(req,res,next)=>{
     try {
-        const userData = await User.findById(req.params.id)
+        const userData = await Contact.findById(req.params.id)
         if(!userData){
             throw Error("Invalid user ID")
         }
@@ -25,7 +25,7 @@ export const getUserByID = async(req,res,next)=>{
 
 export const createUser = async(req,res,next)=>{
     try {
-        const user = await User.create(req.body)
+        const user = await Contact.create(req.body)
 
         if(!user){
             throw Error("Unable to create new user")
@@ -48,7 +48,7 @@ export const updateUser = async(req,res,next)=>{
         const updatedUser = req.body
         const {id} = req.params
 
-        const result = await User.findByIdAndUpdate(id,updatedUser,{new:true})
+        const result = await Contact.findByIdAndUpdate(id,updatedUser,{new:true})
         
         res.status(201).json({
             success:true,
@@ -63,7 +63,7 @@ export const deleteUser = async(req,res,next)=>{
     try {
         const {id} = req.params
 
-        const result = await User.findByIdAndDelete(id)
+        const result = await Contact.findByIdAndDelete(id)
         res.status(201).json({
             success:true,
             deletedUser:result
