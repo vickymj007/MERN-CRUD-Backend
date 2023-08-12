@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+</head>
+<body>
+    <div class="main-container">
+        <nav>
+            <h1>Contact Manager API</h1>
+        </nav>
+        <main>
+            <div class="api-doc">
+                <p>Welcome to the Contact Manager API, Kindly read the below documentation and make use of it.</p>
+            </div>
+            <div class="get card">
+                <h3>GET Request</h3>
+                <p>To get all the Contacts in the Contact Collection, Kindly send a GET request to <a href="https://crud-app-yfc0.onrender.com/api/users">https://crud-app-yfc0.onrender.com/api/users</a></p>
+            </div>
+            <div class="get-id card">
+                <h3>GET Single Contact</h3>
+                <p>To get a single Contact in the Contact Collection, Kindly send a GET request along with contact _id <a href="https://crud-app-yfc0.onrender.com/api/users">https://crud-app-yfc0.onrender.com/api/users/:id</a></p>
+            </div>
+            <div class="put card">
+                <h3>PUT</h3>
+                <p>To update the contact details in the Contact Collection, Send a PUT request along with request body to the URL <a href="https://crud-app-yfc0.onrender.com/api/users">https://crud-app-yfc0.onrender.com/api/users</a></p>
+            </div>
+            <div class="post card">
+                <h3>POST</h3>
+                <p>To create a new contact, Send a POST request with request body which includes {name,relation,contact_number,avatar_id}, URL : <a href="https://crud-app-yfc0.onrender.com/api/users">https://crud-app-yfc0.onrender.com/api/users</a></p>
+            </div>
+            <div class="delete card">
+                <h3>DELETE</h3>
+                <p>To deleta a contact, Send a DELETE request with the contact _id to the URL : <a href="https://crud-app-yfc0.onrender.com/api/users">https://crud-app-yfc0.onrender.com/api/users</a></p>
+            </div>
+        </main>
+    </div>
+</body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Quicksand:wght@400;500;600&family=Ubuntu:wght@500;700&display=swap');
+:root{
+    --black: #000814;
+    --blue-dark:#001d3d;
+    --blue:#003566;
+    --yello:#ffd60a;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: var(--black);
+}
+a{
+    text-decoration: none;
+    color: var(--yello);
+}
+nav{
+    background-color: var(--blue);
+}
+nav h1 {
+    padding: 8px;
+    text-align: center;
+}
+.api-doc p{
+    padding: 16px;
+    text-align: center;
+    font-size: 19px;
+}
+.card {
+    background-color: var(--blue-dark);
+    border-radius: 10px;
+    padding: 16px;
+    max-width: 1200px;
+    min-width: 350px;
+    margin: 20px auto;
+}
+h1,h3{
+    font-weight: 400;
+}
+</style>
+</html>

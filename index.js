@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from 'dotenv'
 import mongoose from "mongoose";
 import userRouter from "./Routes/userRoute.js";
+import path,{dirname} from 'path'
+import { fileURLToPath } from "url";
 import cors from 'cors'
 
 //Configuring ENV files
@@ -31,15 +33,20 @@ const connectDB = async()=>{
 //Sample get request
 app.get('/', (req,res)=>{
     try {
-        res.status(200).send("Home Page")
+        res.status(200).sendFile(path.join(dirname(fileURLToPath(import.meta.url)),'views/index.html'))
     } catch (error) {
-        console.log(error.message);
+        res.status(500).json({msg:error.message})
     }
 })
 
 
+
+
 //routes
 app.use('/api/users', userRouter)
+app.use('*',(req,res)=>{
+    res.status(404).json({msg:"Page you are looking is not found"})
+})
 
 //Handling errors
 app.use((err,req,res,next)=>{

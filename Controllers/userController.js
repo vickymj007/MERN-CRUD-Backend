@@ -25,6 +25,10 @@ export const getUserByID = async(req,res,next)=>{
 
 export const createUser = async(req,res,next)=>{
     try {
+        if(!req.body){
+            throw Error("Request body is missing")
+        }
+
         const user = await Contact.create(req.body)
 
         if(!user){
@@ -32,13 +36,7 @@ export const createUser = async(req,res,next)=>{
         }
         res.status(201).json(user)
     } catch (error) {
-        // if(error.code == 11000){
-        //     error.message = "Contact already exist, try a differnt one"
-        //     next(error)
-        //     return
-        // }
-        console.log(error.message);
-        console.log(error.stack);
+
         next(error)
     }
 }
@@ -47,8 +45,12 @@ export const updateUser = async(req,res,next)=>{
     try {
         const updatedUser = req.body
         const {id} = req.params
+        if(!id) throw Error("Contact ID is needed")
+        if(!updatedUser) throw Error("Request body is missing")
 
         const result = await Contact.findByIdAndUpdate(id,updatedUser,{new:true})
+
+        if(!result)throw Error("Unable to update Contact")
         
         res.status(201).json({
             success:true,
@@ -62,8 +64,12 @@ export const updateUser = async(req,res,next)=>{
 export const deleteUser = async(req,res,next)=>{
     try {
         const {id} = req.params
+        if(!id) throw Error("Contact ID is needed")
 
         const result = await Contact.findByIdAndDelete(id)
+
+        if(!result)throw Error("Unable to Delete Contact")
+
         res.status(201).json({
             success:true,
             deletedUser:result
